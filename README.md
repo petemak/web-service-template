@@ -1,10 +1,17 @@
-# web-service
+# Web service template
+A sample project demonstrating creation of API services using and thanks to the following libraries
+- #Metosin's reitit ring# for routing: https://github.com/metosin/reitit
+- #Metosin's reitit muuntaja middleware# for content-negotiation, request and response formatting.
+- #Metosin's reitit Swager UI middleware#
+- #Brian Merick's Midje# for testing https://github.com/marick/Midje
+- #Weavejester's integrant# for modeling components,their lifecycle methods and dependencies: https://github.com/weavejester/integrant
+- #Weavejester's integrant REPL# for reloaded workflow: https://github.com/weavejester/integrant-repl
 
-A Clojure library designed to ... well, that part is up to you.
+Thanks to Daw-Ran Liou. His Clojure/Walk tutorials are an excellent resource for for a comprehensive and practical view of how to use of these libraries together to create REST APIs.
+https://www.youtube.com/channel/UCj1qlRI5WHAASFw6BeIw_ew
 
 ## Usage
-
-FIXME
+Clone and use dev/workflow.clj to start, stop, restart server. Components are defined in system.clj
 
 ## License
 
