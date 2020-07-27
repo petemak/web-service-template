@@ -1,0 +1,76 @@
+user> (require '[reitit.core :as r])
+nil
+user> (def routes [["/ping" {:mame ::ping}
+                    ]])
+#'user/routes
+user> (def routes [["/ping" {:mame ::ping}]
+                   ["/pong" ::pong]
+                   ["/api"
+                    ["/users" ::users]
+                    ["/posts"]]])
+#'user/routes
+user> (r/router routes)
+#object[reitit.core$lookup_router$reify__2410 0x71ec8b13 "reitit.core$lookup_router$reify__2410@71ec8b13"]
+user> (def router (r/router routes))
+#'user/router
+user> (r/routes router)
+[["/ping" {:mame :user/ping}]
+ ["/pong" {:name :user/pong}]
+ ["/api/users" {:name :user/users}]
+ ["/api/posts" {}]]
+user> (def routes [["/ping" {:mame ::ping}]
+                   ["/pong" ::pong]
+                   ["/api" {:a 1 :name ::api}
+                    ["/users" ::users]
+                    ["/posts" ::posts]]])
+#'user/routes
+user> (def router (r/router routes))
+#'user/router
+user> (r/routes router)
+[["/ping" {:mame :user/ping}]
+ ["/pong" {:name :user/pong}]
+ ["/api/users" {:a 1, :name :user/users}]
+ ["/api/posts" {:a 1, :name :user/posts}]]
+user> (r/match-by-path router "/ping")
+{:template "/ping",
+ :data {:mame :user/ping},
+ :result nil,
+ :path-params {},
+ :path "/ping"}
+user> (r/match-by-path router "/pong")
+{:template "/pong",
+ :data {:name :user/pong},
+ :result nil,
+ :path-params {},
+ :path "/pong"}
+user> (r/match-by-path router "/api/users")
+{:template "/api/users",
+ :data {:a 1, :name :user/users},
+ :result nil,
+ :path-params {},
+ :path "/api/users"}
+user> (r/match-by-name router ::ping)
+nil
+user> (r/match-by-name router ::pong)
+{:template "/pong",
+ :data {:name :user/pong},
+ :result nil,
+ :path-params nil,
+ :path "/pong"}
+user> (r/match-by-name router ::api)
+nil
+user> (r/match-by-name router ::users)
+{:template "/api/users",
+ :data {:a 1, :name :user/users},
+ :result nil,
+ :path-params nil,
+ :path "/api/users"}
+user> (r/match-by-name router {:name :ping})
+nil
+user> (r/match-by-name router :ping)
+nil
+user> (def routes [["/ping" ::ping]
+                   ["/pong" ::pong]
+                   ["/api" {:a 1 :name ::api}
+                    ["/users" ::users]
+                    ["/posts" ::posts]]])
