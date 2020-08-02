@@ -1,4 +1,4 @@
-(ns web-service.sever-test
+(ns web-service.server-test
   (:use midje.sweet) ;; for against-background, before, after
   (:require [conf-er :as conf]
             [clj-http.client :as client]
@@ -18,7 +18,7 @@
 ;; 
 ;; We can therefore do a real HTTP call
 ;; ----------------------------------------------------
-(against-background [(before :contents (ws/start-server))
+(against-background [(before :contents (ws/start-server nil))
                      (after :contents (ws/stop-server))]
 
 ;; ----------------------------------------------------

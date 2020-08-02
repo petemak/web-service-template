@@ -16,10 +16,10 @@
 (defn start-server
   "Side effects! starts the server and stores
   reference in the server atom"
-  []
+  [db]
   (let [port (conf/config :port)] 
     (swap! server (fn [_]
-                    (run-jetty #'routes/app
+                    (run-jetty (routes/create-handler db)
                                {:port port
                                 :join? false}))) 
     (println "::-> Jetty started and running on port: " port)))

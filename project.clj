@@ -10,7 +10,8 @@
                  [clj-time "0.15.2"]
                  [integrant "0.8.0"]
                  [integrant/repl "0.3.1"]
-                 [metosin/reitit "0.5.2"]]
+                 [metosin/reitit "0.5.2"]
+                 [com.datomic/datomic-free "0.9.5697"]]
   :profiles {:dev {:dependencies [[midje "1.9.9"]]
                    :plugins [[lein-midje "3.2.2"]]}}
   :repl-options {:init-ns web-service.server}
